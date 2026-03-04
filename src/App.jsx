@@ -1,14 +1,5 @@
 import { useState, useMemo } from "react";
 
-// ============================================================
-// DATA MODEL
-// Source: BYU 2023-2024 CS BS Catalog (catalog23byu.coursedog.com)
-// and BYU Learning Outcomes (learningoutcomes.byu.edu)
-//
-// To reorganize the hierarchy, change `requirementType` on any
-// course object — the components require zero changes.
-// ============================================================
-
 const CS_CLASSES = [
 
   // ── REQUIREMENT 1: CORE CS COURSES (all 11 required) ──────
@@ -392,7 +383,7 @@ export default function App() {
       <header style={{ marginBottom: 20 }}>
         <h1 style={{ margin: 0, fontSize: 22 }}>BYU CS Class Guide</h1>
         <p style={{ color: "#555", margin: "4px 0 0", fontSize: 13 }}>
-          2023-2024 BS in Computer Science requirements. Click any course to expand details.
+          2025-2026 BS in Computer Science requirements. Click any course to expand details.
         </p>
       </header>
       <input
