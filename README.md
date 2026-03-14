@@ -1,16 +1,33 @@
-# React + Vite
+# BYU CS Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website link
 
-Currently, two official plugins are available:
+- Live site (GitHub Pages): https://davis51502.github.io/byu-cs-guide/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+What’s inside
 
-## React Compiler
+- Card-sort-informed information architecture: Plan My Degree, Register, Courses, Help & Advising, Policies & Forms, Opportunities, Resources, People.
+- Courses organized by requirement groups with search and expandable details.
+- Visual design emphasizing figure/group separation and grouping by proximity.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Run locally
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Deploy to GitHub Pages
+
+1) Ensure `base` is set in `vite.config.js` to `/byu-cs-guide/` (it is).
+2) Push to GitHub once, then run:
+
+```bash
+npm run deploy
+```
+
+This publishes the `dist/` build to the `gh-pages` branch. In your repo settings, set GitHub Pages to deploy from the `gh-pages` branch. Your site will be available at the link above.
+
+Report
+
+- See the 1-page writeup that maps card sorting results to the website structure in docs/site-organization-report.md.

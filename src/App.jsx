@@ -282,9 +282,9 @@ const CS_CLASSES = [
   },
 ];
 
-// ============================================================
+// ===========================================================
 // HELPERS
-// ============================================================
+// ===========================================================
 
 const CATEGORY_ORDER = [
   "Core",
@@ -311,7 +311,7 @@ function getCategories(classes) {
 function ClassCard({ course }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div style={{ border: "1px solid #ccc", borderRadius: 4, padding: "10px 14px", marginBottom: 8, background: "#fff" }}>
+    <div className="course-card" style={{ border: "1px solid #e5e7eb", borderRadius: 8, padding: "10px 14px", background: "#fff" }}>
       <div
         style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", gap: 8 }}
         onClick={() => setExpanded((p) => !p)}
@@ -367,36 +367,321 @@ function CategorySection({ title, courses }) {
 // ============================================================
 export default function App() {
   const [search, setSearch] = useState("");
+  const [active, setActive] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
     if (!q) return CS_CLASSES;
     return CS_CLASSES.filter(
-      (c) => c.number.toLowerCase().includes(q) || c.name.toLowerCase().includes(q) || c.description.toLowerCase().includes(q)
+      (c) =>
+        c.number.toLowerCase().includes(q) ||
+        c.name.toLowerCase().includes(q) ||
+        c.description.toLowerCase().includes(q)
     );
   }, [search]);
 
   const categories = getCategories(filtered);
 
   return (
-    <div style={{ maxWidth: 720, margin: "0 auto", padding: "24px 16px", fontFamily: "Georgia, serif" }}>
-      <header style={{ marginBottom: 20 }}>
-        <h1 style={{ margin: 0, fontSize: 22 }}>BYU CS Class Guide</h1>
-        <p style={{ color: "#555", margin: "4px 0 0", fontSize: 13 }}>
-          2025-2026 BS in Computer Science requirements. Click any course to expand details.
-        </p>
-      </header>
-      <input
-        type="text"
-        placeholder="Search by number, name, or topic..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        style={{ width: "100%", padding: "8px 12px", fontSize: 14, border: "1px solid #ccc", borderRadius: 4, boxSizing: "border-box", marginBottom: 16 }}
-      />
-      {categories.length === 0 && <p style={{ color: "#777" }}>No courses match "{search}".</p>}
-      {categories.map((cat) => (
-        <CategorySection key={cat} title={cat} courses={filtered.filter((c) => c.requirementType === cat)} />
-      ))}
+    <div>
+      <nav className="topnav">
+        <div className="topnav__inner">
+          <div className="brand" onClick={() => { setActive("home"); setMobileMenuOpen(false); }} role="button" aria-label="Go home">
+            BYU CS Guide
+          </div>
+          <button
+            className="menu-btn"
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileMenuOpen((o) => !o)}
+          >
+            <span aria-hidden>☰</span>
+          </button>
+          <div className="topnav__links">
+            <a href="#plan" onClick={() => { setActive("plan"); setMobileMenuOpen(false); }}>Plan My Degree</a>
+            <a href="#register" onClick={() => { setActive("register"); setMobileMenuOpen(false); }}>Register</a>
+            <a href="#courses" onClick={() => { setActive("courses"); setMobileMenuOpen(false); }}>Courses</a>
+            <a href="#help" onClick={() => { setActive("help"); setMobileMenuOpen(false); }}>Help & Advising</a>
+            <a href="#policies" onClick={() => { setActive("policies"); setMobileMenuOpen(false); }}>Policies & Forms</a>
+            <a href="#opportunities" onClick={() => { setActive("opportunities"); setMobileMenuOpen(false); }}>Opportunities</a>
+            <a href="#resources" onClick={() => { setActive("resources"); setMobileMenuOpen(false); }}>Resources</a>
+            <a href="#people" onClick={() => { setActive("people"); setMobileMenuOpen(false); }}>People</a>
+          </div>
+        </div>
+        <div id="mobile-menu" className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+          <a href="#plan" onClick={() => { setActive("plan"); setMobileMenuOpen(false); }}>Plan My Degree</a>
+          <a href="#register" onClick={() => { setActive("register"); setMobileMenuOpen(false); }}>Register</a>
+          <a href="#courses" onClick={() => { setActive("courses"); setMobileMenuOpen(false); }}>Courses</a>
+          <a href="#help" onClick={() => { setActive("help"); setMobileMenuOpen(false); }}>Help & Advising</a>
+          <a href="#policies" onClick={() => { setActive("policies"); setMobileMenuOpen(false); }}>Policies & Forms</a>
+          <a href="#opportunities" onClick={() => { setActive("opportunities"); setMobileMenuOpen(false); }}>Opportunities</a>
+          <a href="#resources" onClick={() => { setActive("resources"); setMobileMenuOpen(false); }}>Resources</a>
+          <a href="#people" onClick={() => { setActive("people"); setMobileMenuOpen(false); }}>People</a>
+        </div>
+      </nav>
+
+      <main className="container">
+        <header className="hero">
+          <h1>BYU CS Classes & Student Guide</h1>
+          <p>Plan → Register → Courses → Support</p>
+        </header>
+
+        {/* Hubs: figure/group separation via cards and spacing */}
+        <section aria-label="Top hubs" className="hubs" id="home">
+          {HUBS.map((h) => (
+            <a key={h.id} className="hub-card" href={`#${h.id}`} onClick={() => setActive(h.id)}>
+              <div className="hub-card__icon" aria-hidden>{h.icon}</div>
+              <div className="hub-card__title">{h.title}</div>
+              <div className="hub-card__desc">{h.desc}</div>
+            </a>
+          ))}
+        </section>
+
+        {/* Plan My Degree */}
+        <section id="plan" className="section">
+          <div className="section__header">
+            <h2>Plan My Degree</h2>
+            <p>Degree requirements, sample 4-year plans, and prerequisite chains.</p>
+          </div>
+          <div className="list-grid">
+            <div className="panel">
+              <h3>Degree Requirements</h3>
+              <ul>
+                <li>All core CS courses (11 total)</li>
+                <li>Support courses in math, stats, physics, writing</li>
+                <li>21 credits of CS electives</li>
+                <li>Capstone or research track</li>
+              </ul>
+            </div>
+            <div className="panel">
+              <h3>4-Year Plans</h3>
+              <ul>
+                <li>Typical freshman → senior year sequence</li>
+                <li>Alt: AI/ML-focused plan</li>
+                <li>Alt: Systems-focused plan</li>
+                <li>Alt: SE-focused plan</li>
+              </ul>
+            </div>
+            <div className="panel panel--accent">
+              <h3>What should I take next?</h3>
+              <p>Search your next course by prereq fit and interests.</p>
+              <p className="small">Use the Courses section search and filters below.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Register */}
+        <section id="register" className="section">
+          <div className="section__header">
+            <h2>Register for Classes</h2>
+            <p>Deadlines, waitlists, add/drop, and override info.</p>
+          </div>
+          <div className="list-grid">
+            <div className="panel">
+              <h3>Key Actions</h3>
+              <ul>
+                <li>Check registration date/time</li>
+                <li>Join waitlists and track status</li>
+                <li>Request prerequisite override</li>
+                <li>Understand add/drop windows</li>
+              </ul>
+            </div>
+            <div className="panel">
+              <h3>Tips</h3>
+              <ul>
+                <li>Have a backup schedule ready</li>
+                <li>Balance core with electives</li>
+                <li>Mind prerequisites and co-requisites</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Courses */}
+        <section id="courses" className="section">
+          <div className="section__header">
+            <h2>Courses</h2>
+            <p>Explore courses by requirement group. Click to expand details.</p>
+          </div>
+
+          <input
+            className="search"
+            type="text"
+            placeholder="Search by number, name, or topic..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            aria-label="Search courses"
+          />
+
+          {categories.length === 0 && (
+            <p className="muted">No courses match "{search}".</p>
+          )}
+
+          {categories.map((cat) => (
+            <div key={cat} className="category-group">
+              <div className="category-group__header">
+                <h3 className="category-title">{cat}</h3>
+                {CATEGORY_NOTES[cat] && (
+                  <span className="category-note">{CATEGORY_NOTES[cat]}</span>
+                )}
+              </div>
+              <div className="courses-grid">
+                {filtered
+                  .filter((c) => c.requirementType === cat)
+                  .map((c) => (
+                    <ClassCard key={c.id} course={c} />
+                  ))}
+              </div>
+            </div>
+          ))}
+        </section>
+
+        {/* Help & Advising */}
+        <section id="help" className="section">
+          <div className="section__header">
+            <h2>Help & Advising</h2>
+            <p>TA hours, tutoring, office hours, advising appointments, FAQs.</p>
+          </div>
+          <div className="list-grid">
+            <div className="panel">
+              <h3>Get Help</h3>
+              <ul>
+                <li>TA labs schedule</li>
+                <li>Tutoring resources</li>
+                <li>Professor office hours</li>
+              </ul>
+            </div>
+            <div className="panel">
+              <h3>Meet Advising</h3>
+              <ul>
+                <li>Book an appointment</li>
+                <li>Common questions</li>
+                <li>Email advising team</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Policies & Forms */}
+        <section id="policies" className="section">
+          <div className="section__header">
+            <h2>Policies & Forms</h2>
+            <p>Academic integrity, petitions, grade appeals, and conduct.</p>
+          </div>
+          <div className="list-grid">
+            <div className="panel">
+              <h3>Policies</h3>
+              <ul>
+                <li>Academic honesty</li>
+                <li>Repeat/retake policy</li>
+                <li>Withdrawal policy</li>
+              </ul>
+            </div>
+            <div className="panel">
+              <h3>Forms</h3>
+              <ul>
+                <li>Prerequisite override</li>
+                <li>Petitions</li>
+                <li>Independent study request</li>
+              </ul>
+            </div>
+            <div className="panel">
+              <h3>Quick FAQ</h3>
+              <ul>
+                <li>Policies vs Forms: Policies explain rules; Forms request exceptions.</li>
+                <li>Where to appeal a grade? See "Petitions" under Forms.</li>
+                <li>Code of conduct? Covered in Academic honesty.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Opportunities & Careers */}
+        <section id="opportunities" className="section">
+          <div className="section__header">
+            <h2>Opportunities & Careers</h2>
+            <p>Capstone, undergrad research, clubs, internships, scholarships, career resources.</p>
+          </div>
+          <div className="list-grid">
+            <div className="panel">
+              <h3>Get Involved</h3>
+              <ul>
+                <li>Capstone and research</li>
+                <li>Clubs and events</li>
+                <li>Internship credit</li>
+              </ul>
+            </div>
+            <div className="panel">
+              <h3>Career</h3>
+              <ul>
+                <li>Job boards</li>
+                <li>Resume reviews</li>
+                <li>Alumni network</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Resources */}
+        <section id="resources" className="section">
+          <div className="section__header">
+            <h2>Resources</h2>
+            <p>Labs, software licenses, VPN, accessibility, intl student info.</p>
+          </div>
+          <div className="list-grid">
+            <div className="panel">
+              <h3>Computing</h3>
+              <ul>
+                <li>CS labs & locations</li>
+                <li>VPN and remote access</li>
+                <li>Software and licenses</li>
+              </ul>
+            </div>
+            <div className="panel">
+              <h3>Support</h3>
+              <ul>
+                <li>Accessibility resources</li>
+                <li>International students</li>
+                <li>Wellbeing and support</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* People */}
+        <section id="people" className="section">
+          <div className="section__header">
+            <h2>People</h2>
+            <p>Faculty and staff directories; contact the department.</p>
+          </div>
+          <div className="list-grid">
+            <div className="panel">
+              <h3>Directories</h3>
+              <ul>
+                <li>Faculty directory</li>
+                <li>Staff directory</li>
+                <li>Contact us</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
+
+// ============================================================
+// Hubs config (top-level navigation cards)
+// ============================================================
+const HUBS = [
+  { id: "plan", title: "Plan My Degree", desc: "Requirements, plans, and prereqs.", icon: "🧭" },
+  { id: "register", title: "Register", desc: "Deadlines, add/drop, waitlists.", icon: "🗓️" },
+  { id: "courses", title: "Courses", desc: "Browse core, support, electives.", icon: "📚" },
+  { id: "help", title: "Help & Advising", desc: "TAs, tutoring, and advising.", icon: "🆘" },
+  { id: "policies", title: "Policies & Forms", desc: "Integrity, petitions, conduct.", icon: "📄" },
+  { id: "opportunities", title: "Opportunities", desc: "Capstone, research, careers.", icon: "🚀" },
+  { id: "resources", title: "Resources", desc: "Labs, software, accessibility.", icon: "🧰" },
+  { id: "people", title: "People", desc: "Faculty, staff, contacts.", icon: "👥" },
+];
