@@ -1,10 +1,12 @@
 # CS classes V2: How Card Sorting Shaped the Design
 
+Link to website: https://davis51502.github.io/byu-cs-guide/
+
 Summary
 
-The site’s information architecture mirrors dominant clusters and labels from the card sorting study. Navigation follows the student journey — “Plan → Register → Do class” — and includes the consistently grouped support areas: Help & Advising, Policies & Forms, Opportunities & Careers, Resources, and People. The visual system emphasizes figure/ground contrast and proximity-based grouping so related content is obvious, yet sections remain distinct.
+The layout of the site is inspired by the cs card sorting study. Navigation follows the “Plan → Register → Do class” path and has grouped support columns: Help & Advising, Policies & Forms, Opportunities & Careers, Resources, and People. The related content appears obvious, while the sections are distinct enough to the viewer to be able to find what he/she is looking for. 
 
-Top-Level IA (from frequent labels)
+Information architecture:
 
 - Plan My Degree: Degree requirements, 4-year plans, prerequisite chains.
 - Register: Deadlines, waitlists, add/drop, prerequisite overrides.
@@ -17,33 +19,26 @@ Top-Level IA (from frequent labels)
 
 Direct mappings from study to site
 
-- Journey sequencing (P1): Home hubs and top nav implement “Plan → Register → Do class.” As one participant put it, “I think in terms of ‘Plan → Register → Do class’.”
-- Preferred labels: Adopted “Plan My Degree,” “Register,” “Courses,” and “Help & Advising,” avoiding ambiguous terms like “Enrollment.”
-- Consolidations vs splits (P2): TA hours, Tutoring, and Office Hours live together under Help & Advising. Per-course materials (Canvas, syllabi) appear on each course card rather than in a generic Resources page.
-- Prerequisite chains (P1): Shown in two contexts, matching split expectations — in Plan (chains and planning) and on each course card (local decision context).
-- Register focus (P8): Dedicated Register area with add/drop windows, waitlists, and overrides called out as first-class tasks.
-- Clarifying Policies vs Forms (P4): Added a short “Quick FAQ” panel under Policies to reduce ambiguity about where to act vs where to read policy.
+- Journey sequencing (P1): Home hubs and top nav implement “Plan → Register → Do class.”
+- Preferred labels: used “Plan My Degree,” “Register,” “Courses,” and “Help & Advising,” avoiding ambiguous terms like “Enrollment.”
+- Consolidations vs splits (P2): TA hours, Tutoring, and Office Hours live together under Help & Advising. Course specific materials are on each course card instead of om a random resources page.
+- Prerequisite chains (P1): In matching split expectations — in Plan (chains and planning) and on each course card
+- Register focus (P8): There is a specific register area with add/drop windows, waitlists, and overrides called out as first-class tasks.
+- Clarifying Policies vs Forms (P4): Added a short “Quick FAQ” panel under Policies to appear more clear about where to act vs where to read policy.
 
 Courses section design
 
-- Requirement-based grouping: Core, Support (Math/Science), CS Elective, Capstone/Research match how students plan. Each group panel includes a concise note (e.g., “All 11 courses required”).
-- Search-first: Single search box supports queries like “CS 324” or “networking.”
-- Standardized course template: Number, name, credits, short description; expandable details include prerequisites and notes, aligning with requests for consistent per-course info.
+- Requirement grouping: Core, support courses (math/science), CS Elective, Capstone/Research match how students plan. Each panel has a note (e.g., “All 11 courses required”).
+- Search-first: Single search box supports queries like “CS 324”
+- Standardized course template: Number, name, credits, short description; extra details has info about prerequisites, are in line with requests for consistent course info.
 
-Visual principles applied
+Visuals
 
-- Figure/ground: Cards and panels sit on a soft background to clearly separate content groups.
-- Proximity: Related items (e.g., Register tasks) appear in tight panels; spacing defines boundaries more than borders.
-- Typographic hierarchy: Section titles > panel headings > body text for fast scanning; muted secondary text reduces visual noise.
-- Consistency: Repeated grid/panel patterns lower cognitive load and improve predictability.
+- Proximity: Related items (e.g., Register tasks) appear in tight panels; spacing has clear boundaries and borders to keep content visible.
+- Hierarchy: Section titles > panel headings > body text for quick viewing; subtle secondary text limits the visual stimuli.
+- Consistency: There are grid/panel patterns to lower how much the user has to think and to improve predictability.
 
 Evidence from the study
 
 - Label and grouping convergence: 75% of cards placed consistently across ≥60% of participants.
 - Representative quote: “I think in terms of ‘Plan → Register → Do class’.”
-
-Rubric alignment
-
-- Card sorting → organization (50%): The nav, hubs, and course grouping are direct implementations of the clustered labels and priorities (P1/P2/P4/P8).
-- Visual appearance (25%): Designed around clear figure/ground, spacing scales, and consistent components.
-- Report clarity (25%): Uses student-preferred labels and concise explanations to describe the mapping from study → IA.
